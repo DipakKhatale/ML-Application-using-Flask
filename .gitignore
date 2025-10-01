@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+
+# Uploaded datasets (do not track user files)
+uploads/
+
+# Trained models (can be regenerated, don’t store in Git)
+models/
+
+# System/IDE files
+*.DS_Store
+.vscode/
+.idea/
