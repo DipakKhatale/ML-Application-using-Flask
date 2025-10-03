@@ -12,7 +12,7 @@ venv/
 uploads/
 
 # Trained models (can be regenerated, don’t store in Git)
-models/
+# models/
 
 # System/IDE files
 *.DS_Store
