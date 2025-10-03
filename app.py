@@ -7,6 +7,10 @@ from config import ALLOWED_EXTENSIONS, DEFAULT_MODEL
 
 app = Flask(__name__)
 
+@app.route("/", methods=["GET"])
+def home():
+    return "Flask ML API is running! Use /train, /test, /predict with POST."
+
 @app.route("/train", methods=["POST"])
 def train():
     if "file" not in request.files:
@@ -54,8 +58,8 @@ def test():
         if target_column not in data.columns:
             return jsonify({"error": f"Target column '{target_column}' not found"}), 400
         
-        accuracy = test_model(data, target_column, model_name)
-        return jsonify({"accuracy": accuracy})
+        metrics = test_model(data, target_column, model_name)
+        return jsonify(metrics)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -69,7 +73,7 @@ def predict():
 
     try:
         prediction = predict_datapoint(json_data, model_name)
-        return jsonify({"prediction": str(prediction)})
+        return jsonify({"prediction": prediction})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
